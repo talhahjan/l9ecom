@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['as' => 'api.', 'prefix' => '/','middleware'=>['auth:sanctum','apiClient']], function () {
+Route::group(['as' => 'api.', 'prefix' => '/','middleware'=>['auth:api','apiClient']], function () {
     Route::get('user/cart',['App\Http\Controllers\Api\UserController', 'cart'])->name('user.cart');
     Route::get('user/favorites',['App\Http\Controllers\Api\UserController', 'favorites'])->name('user.favorites');
     Route::get("user/profile", ['App\Http\Controllers\Api\UserController', 'profile'])->name('user.profile');

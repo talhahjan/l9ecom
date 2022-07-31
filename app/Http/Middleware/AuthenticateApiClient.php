@@ -17,11 +17,13 @@ class AuthenticateApiClient
     public function handle(Request $request, Closure $next)
     {
 
-        if($request->apitoken=='1234abcd')
+
+        if($request->apikey==env('API_KEY'))
         return $next($request);
 
-
-        return  abort(403, "Invalid Api Access Token");
-
-    }
+    if(!isset($request->apikey))
+  return  abort(403, "Api Access Token Missing");
+else
+return  abort(403, "Invalid Api Access Token");
+  }
 }
