@@ -4,20 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Profile;
-use Auth;
 
 
 
 class UserController extends Controller
 {
     public function profile(){
-        $userId=auth()->user()['id'];
+        $userId = Auth::user()['id'];
         $userInfo=User::where('id', $userId)->with('profile')->first();
         return response()->json($userInfo);
-    
         }
     
     
@@ -55,7 +53,7 @@ class UserController extends Controller
     
     
         public function favorites(){
-            $userId=auth()->user()['id'];
+          $userId = Auth::user()['id'];
          
       $cart=User::with('favorites')->where('id', $userId)->first();
        return response()->json(
@@ -65,15 +63,8 @@ class UserController extends Controller
       
           
           public function Cart(Request $request){
-            $userId=auth()->user()['id'];
-         
-            if($userId){
-            return response()->json([
-              'staus'=>202,
-              'message'=>'Please login to view cart',
-            ]);
-          }
-      
+            $userId = Auth::user()['id'];
+               
             $cart=User::find($userId)->with('cart')->first();
           
           return response()->json(

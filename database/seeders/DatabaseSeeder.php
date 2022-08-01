@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
      // The Perfect way to create fake data 
               Category::factory()->count(14
               )->
-              has(Product::factory()->count(rand(10,20
+              has(Product::factory()->count(rand(50,120
               ))->has(
                 Thumbnail::factory()
                         ->count(rand(1,2))

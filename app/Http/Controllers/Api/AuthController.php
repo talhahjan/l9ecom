@@ -34,16 +34,26 @@ $token = Auth::attempt($credentials);
 
 if (!$token) {
     return response()->json([
-        'status' => 'error',
+        'statusText' => 'error',
         'message' => 'Unauthorized',
     ], 401);
 }
 
 $user = Auth::user();
 return response()->json([
+  'user'=>[
+    'id'=>1,
+    'first_name'=>'Muhammad',
+    'last_name'=>'Khalid',
+  ],
   'statusText'=>'ok',
-   'token'=>$token,
-   'message'=>'Login Successfully'
+   'message'=>'Login Successfully',
+   'avatar'=>$user->profile->avatar,
+   'authorisation' => [
+    'token'=>$token,
+    'type'=>'brearer',
+   ],             
+
  ], 200);
 
  }
@@ -87,21 +97,15 @@ public function register(Request $request){
                     return response()->json([
                      'status'=>200,
                      'statusText'=>'ok',
+                     'authorisation' => [
                       'token'=>$token,
-                      'message'=>'Register Successfully'
+                      'type'=>'brearer',
+                     ],                    
                     ], 200);
                 }
 }
 
 
-public function logout()
-{
-    Auth::logout();
-    return response()->json([
-        'statusText' => 'ok',
-        'message' => 'Successfully logged out',
-    ],200);
-}
 
 public function refresh()
 {

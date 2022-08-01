@@ -34,7 +34,7 @@ class AdminUserProfile extends Seeder
             'phone' => '+923212257340',
             'address' => 'Address Address Address Address Address Address Address Address ',
             'user_id' => $user->id,
-            'avatar' => asset('uploads/users/avatars/superadmin.jpg'),
+            'avatar' => 'uploads/users/avatars/superadmin.jpg',
  
         ]);
 
@@ -101,7 +101,7 @@ class AdminUserProfile extends Seeder
             'phone' => '+923212257340',
             'address' => 'Address Address Address Address Address Address Address Address ',
             'user_id' => $user->id,
-           
+        
             'avatar' => 'uploads/users/avatars/customer.jpg',
 
         ]);
