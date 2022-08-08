@@ -109,6 +109,7 @@ public function register(Request $request){
 
 public function refresh()
 {
+
     return response()->json([
         'statusText' => 'ok',
         'message' => 'Token refresh successfully',

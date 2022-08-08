@@ -12,6 +12,16 @@ use App\Models\Profile;
 
 class UserController extends Controller
 {
+
+
+
+
+  function __construct() {
+ Auth::refresh();
+  }
+
+
+
     public function profile(){
         $userId = Auth::user()['id'];
         $userInfo=User::where('id', $userId)->with('profile')->first();
@@ -22,7 +32,7 @@ class UserController extends Controller
     
         public function updateProfile(Request $request){
         
-      $userId=auth()->user()['id'];
+      $userId=Auth::user()['id'];
       $updateProfile=Profile::where('user_id',$userId)->update([
         'first_name'=>$request->first_name,
         'last_name'=>$request->last_name,

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('user/favorites',['App\Http\Controllers\Api\UserController', 'favorites'])->name('user.favorites');
     Route::get("user/profile", ['App\Http\Controllers\Api\UserController', 'profile'])->name('user.profile');
     Route::post("user/profile/edit", ['App\Http\Controllers\Api\UserController', 'updateProfile'])->name('update.profile');
+    Route::get("jwt/refresh", ['App\Http\Controllers\Api\AuthController', 'refresh'])->name('refresh');
     });
     
     Route::group(['as' => 'api.', 'prefix' => '/'], function () {
@@ -32,4 +33,6 @@ use Illuminate\Support\Facades\Route;
     Route::get("products/featured", ['App\Http\Controllers\Api\ApiController', 'getFeaturedProduct'])->name('featured-products');
     Route::post("login", ['App\Http\Controllers\Api\AuthController', 'login'])->name('login');
     Route::post("register", ['App\Http\Controllers\Api\AuthController', 'register'])->name('register');
+    Route::get("filter", ['App\Http\Controllers\Api\FilterController', 'section'])->name('filter');
+    Route::get("filter/{section}", ['App\Http\Controllers\Api\FilterController', 'category'])->name('section.filter');
     });
